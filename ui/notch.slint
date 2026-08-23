@@ -1,0 +1,183 @@
+export component Notch inherits Window {
+    width: root.expanded ? 420px : 280px;
+    height: root.expanded ? 320px : 44px;
+    background: transparent;
+
+    in property <string> clock_text: "19:42";
+    in property <string> battery_text: "87%";
+    in property <string> battery_icon: "󰁹";
+    in property <bool> expanded: false;
+
+    in property <[float]> cava_values: [
+        0.15, 0.25, 0.40, 0.55,
+        0.70, 0.85, 1.0, 0.85,
+        0.70, 0.55, 0.40, 0.25
+    ];
+
+    Rectangle {
+        x: 0px;
+        y: 0px;
+        width: parent.width;
+        height: parent.height;
+        background: #08090d;
+        border-radius: 22px;
+
+        animate width {
+            duration: 220ms;
+            easing: ease-in-out;
+        }
+
+        animate height {
+            duration: 260ms;
+            easing: ease-in-out;
+        }
+    }
+
+    Text {
+        x: 18px;
+        y: 0px;
+        width: 60px;
+        height: 44px;
+        text: clock_text;
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 600;
+        horizontal-alignment: center;
+        vertical-alignment: center;
+        opacity: root.expanded ? 0.0 : 1.0;
+
+        animate opacity {
+            duration: 150ms;
+            easing: ease-in-out;
+        }
+    }
+
+    Rectangle {
+        x: 92px;
+        y: 10px;
+        width: 96px;
+        height: 24px;
+        background: transparent;
+        border-radius: 12px;
+        opacity: root.expanded ? 0.0 : 1.0;
+
+        animate opacity {
+            duration: 150ms;
+            easing: ease-in-out;
+        }
+    }
+
+    for bar[index] in root.cava_values:
+        Rectangle {
+            x: 94px + (index * 4px);
+            y: 22px - (bar * 20px) / 2;
+            width: 3px;
+            height: bar * 20px;
+            border-radius: 2px;
+            background: #8c7cff;
+            opacity: root.expanded ? 0.0 : 1.0;
+
+            animate opacity {
+                duration: 150ms;
+                easing: ease-in-out;
+            }
+        }
+
+    Text {
+        x: 194px;
+        y: 0px;
+        width: 70px;
+        height: 44px;
+        text: battery_icon + " " + battery_text;
+        color: #ffffff;
+        font-family: "JetBrainsMono Nerd Font";
+        font-size: 16px;
+        font-weight: 600;
+        horizontal-alignment: center;
+        vertical-alignment: center;
+        opacity: root.expanded ? 0.0 : 1.0;
+
+        animate opacity {
+            duration: 150ms;
+            easing: ease-in-out;
+        }
+    }
+
+    Text {
+        x: 18px;
+        y: 14px;
+        width: 70px;
+        height: 18px;
+        text: clock_text;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 600;
+        horizontal-alignment: left;
+        vertical-alignment: center;
+        opacity: root.expanded ? 1.0 : 0.0;
+
+        animate x {
+            duration: 220ms;
+            easing: ease-out;
+        }
+
+        animate y {
+            duration: 220ms;
+            easing: ease-out;
+        }
+
+        animate opacity {
+            duration: 180ms;
+            easing: ease-out;
+        }
+    }
+
+    Text {
+        x: 332px;
+        y: 14px;
+        width: 70px;
+        height: 18px;
+        text: battery_icon + " " + battery_text;
+        color: #ffffff;
+        font-family: "JetBrainsMono Nerd Font";
+        font-size: 12px;
+        font-weight: 600;
+        horizontal-alignment: right;
+        vertical-alignment: center;
+        opacity: root.expanded ? 1.0 : 0.0;
+
+        animate x {
+            duration: 220ms;
+            easing: ease-out;
+        }
+
+        animate y {
+            duration: 220ms;
+            easing: ease-out;
+        }
+
+        animate opacity {
+            duration: 180ms;
+            easing: ease-out;
+        }
+    }
+
+    Rectangle {
+        x: 18px;
+        y: 43px;
+        width: parent.width - 36px;
+        height: 1px;
+        background: #252832;
+        opacity: root.expanded ? 0.65 : 0.0;
+
+        animate width {
+            duration: 240ms;
+            easing: ease-out;
+        }
+
+        animate opacity {
+            duration: 180ms;
+            easing: ease-in-out;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+[package] 
+name = "notch"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+smithay-client-toolkit = "0.21.1"
+wayland-client = "0.31.11"
+wayland-protocols = { version = "0.32.9", features = ["client"]}
+slint = { version = "1.17.1" ,
+    default-features = false ,
+    features = [
+    "std", "compat-1-2", "renderer-software"
+    ]}
+chrono = {
+    version = "0.4",
+    default-features = false,
+    features = ["clock"]
+}
+
+[build-dependencies]
+slint-build = "1.17.1"
